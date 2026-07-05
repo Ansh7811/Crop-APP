@@ -24,7 +24,7 @@ class WeatherModel {
       description: json['weather'][0]['description'] ?? '',
       iconCode: json['weather'][0]['icon'] ?? '',
       feelsLike: (json['main']['feels_like'] as num).toDouble(),
-      humidity: json['main']['humidity'] as int,
+      humidity: (json['main']['humidity'] as num).toInt(),
       windSpeed: (json['wind']['speed'] as num).toDouble(),
     );
   }

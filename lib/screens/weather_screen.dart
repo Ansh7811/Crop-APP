@@ -65,7 +65,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
         behavior: SnackBarBehavior.floating,
         action: SnackBarAction(
           label: 'Retry',
-          textColor: Colors.white,
           onPressed: _fetchWeatherData,
         ),
       ),
@@ -113,35 +112,35 @@ class _WeatherScreenState extends State<WeatherScreen> {
       padding: const EdgeInsets.all(24.0),
       child: Center(
         child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.error_outline_rounded, color: AppTheme.accentRed, size: 64),
-          const SizedBox(height: 16),
-          Text(
-            'Oops! Something went wrong',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(color: AppTheme.textPrimary),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            _errorMessage!,
-            textAlign: TextAlign.center,
-            style: const TextStyle(color: AppTheme.textSecondary),
-          ),
-          const SizedBox(height: 24),
-          ElevatedButton.icon(
-            onPressed: _fetchWeatherData,
-            icon: const Icon(Icons.refresh_rounded),
-            label: const Text('Try Again'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.accent,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.error_outline_rounded, color: AppTheme.accentRed, size: 64),
+            const SizedBox(height: 16),
+            Text(
+              'Oops! Something went wrong',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(color: AppTheme.textPrimary),
             ),
-          ),
-        ],
+            const SizedBox(height: 8),
+            Text(
+              _errorMessage!,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: AppTheme.textSecondary),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              onPressed: _fetchWeatherData,
+              icon: const Icon(Icons.refresh_rounded),
+              label: const Text('Try Again'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppTheme.accent,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
     );
   }
 
