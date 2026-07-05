@@ -1,0 +1,38 @@
+name: Deploy Frontend to GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Create .env File
+        run: |
+          echo "WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}" > .env
+          echo "ML_BACKEND_URL=${{ secrets.ML_BACKEND_URL }}" >> .env
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Build Web Application
+        run: flutter build web --base-href "/Crop-APP/" --release
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
