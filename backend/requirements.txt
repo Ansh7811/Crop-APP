@@ -6,3 +6,4 @@ pandas
 pydantic
 meteostat
 sqlalchemy
+psycopg2-binary
